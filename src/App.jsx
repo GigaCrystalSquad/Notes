@@ -22,6 +22,7 @@ function Note({id, text, deleteFunc, noteEditFunc, noteChangeStatusFunc, editing
           onChange={x=>noteEditFunc(id, x.target.value)}
           onKeyDown={x=> keyboardHandler(x)}
           />
+        <button onClick={()=>deleteFunc(id)}/>
       </div>
     )
   }
@@ -40,7 +41,8 @@ function Gallery() {
     setNotes(notes => [...notes, {noteid:n, text:text, modified:true}]);
     setN(n => n + 1);
   }
-  function noteDelete({note_id}) {
+  function noteDelete(note_id) {
+    alert(typeof(note_id))
     setNotes(notes.filter(x => x.noteid != note_id));
   }
   function noteChangeStatus(note_id) {
