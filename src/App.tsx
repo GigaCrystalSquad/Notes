@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
+import { Button } from "@/components/ui/button";
+import MyMenu from './components/MyMenu';
 function Note({id, text, deleteFunc, noteEditFunc, noteChangeStatusFunc, editing}) {
   const keyboardHandler = (event) => { 
     if (event.key === 'Enter') {
@@ -23,7 +25,8 @@ function Note({id, text, deleteFunc, noteEditFunc, noteChangeStatusFunc, editing
           onChange={x=>noteEditFunc(id, x.target.value)}
           onKeyDown={x=> keyboardHandler(x)}
           />
-        <button onClick={(e)=>{e.stopPropagation();deleteFunc(id)}}/>
+          <Button variant="destructive"> OK</Button>
+        <Button variant="destructive" onClick={(e)=>{e.stopPropagation();deleteFunc(id)}}>Delete </Button>
       </div>
     )
   }
@@ -43,9 +46,7 @@ function Gallery() {
     setN(n => n + 1);
   }
   function noteDelete(note_id) {
-    alert(notes.length)
     setNotes(notes.filter(x => x.noteid != note_id));
-    alert(notes.length)
   }
   function noteChangeStatus(note_id) {
     setNotes(notes.map(x => {
@@ -83,6 +84,7 @@ function Gallery() {
 export default function App() {
   return (
     <div>
+      <MyMenu>Ew</MyMenu>
       <h1> Notes </h1>
       <Gallery />
     </div>
