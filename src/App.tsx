@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 function Note({id, text, deleteFunc, noteEditFunc, noteChangeStatusFunc, editing}) {
   const keyboardHandler = (event) => { 
@@ -7,15 +8,15 @@ function Note({id, text, deleteFunc, noteEditFunc, noteChangeStatusFunc, editing
   }
   if (editing == 0) {
     return (
-      <div class = "note" onClick={e => noteChangeStatusFunc(id)}>
+      <div className = "note" onClick={e => noteChangeStatusFunc(id)}>
         <p> {text}</p>
       </div>
     )
   } else {
     return (
-      <div class = "note" onClick={e => noteChangeStatusFunc(id)}>
+      <div className = "note" onClick={e => noteChangeStatusFunc(id)}>
         <input id="new_note_text"
-         class="new_note_text"
+         className="new_note_text"
           type="text" 
           onClick = {e => e.stopPropagation()} 
           value = {text} 
