@@ -84,9 +84,13 @@ function Gallery() {
 export default function App() {
   return (
     <div>
-      <MyMenu>Ew</MyMenu>
-      <h1> Notes </h1>
-      <Gallery />
+      <header className='menu-header'>
+        <MyMenu/>
+      </header>
+      <main>
+        <h1> Notes </h1>
+        <Gallery />
+      </main>
     </div>
     
   )
