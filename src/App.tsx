@@ -85,7 +85,7 @@ export default function App() {
   return (
     <div>
       <header className='menu-header'>
-        <MyMenu/>
+        
       </header>
       <main>
         <h1> Notes </h1>
