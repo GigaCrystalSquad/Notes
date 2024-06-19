@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import MyMenu from './components/MyMenu';
+import MyMenu from '../components/MyMenu';
 function Note({id, text, deleteFunc, noteEditFunc, noteChangeStatusFunc, editing}) {
   const keyboardHandler = (event) => { 
     if (event.key === 'Enter') {
