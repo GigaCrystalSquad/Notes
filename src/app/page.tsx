@@ -3,6 +3,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Button } from "@/components/ui/button"
+import {saveNotes} from "./actions"
 function Note({id, text, deleteFunc, noteEditFunc, noteChangeStatusFunc, editing}) {
   const keyboardHandler = (event) => { 
     if (event.key === 'Enter') {
@@ -42,7 +43,7 @@ function AddNoteNote({stateChanger}) {
 function Gallery() {
   const [n, setN] = useState(1);
   const [notes, setNotes] = useState( [{noteid:0,text:"example", modified:false}]);
-  function AddNotes(text) {
+  function AddNotes(text: string) {
     setNotes(notes => [...notes, {noteid:n, text:text, modified:true}]);
     setN(n => n + 1);
   }
@@ -53,6 +54,7 @@ function Gallery() {
     setNotes(notes.map(x => {
       if (x.noteid == note_id) {
         x.modified = !x.modified;
+        saveNotes(x.text);
       } 
       return x;
     }
