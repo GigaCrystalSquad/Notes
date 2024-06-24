@@ -19,6 +19,6 @@ export async function getNotesList() {
   console.log(notes_list);
   console.log( notes_list.map((x) => {return({noteid:x.id, text:x.text, modified:false})}));
   return(
-    Array(notes_list.map((x) => {return({noteid:x.id, text:x.text, modified:false})}))
+    notes_list.map((x) => {return({noteid:x.id, text:x.text, modified:false})})
 )
 }

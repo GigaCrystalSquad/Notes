@@ -1,6 +1,6 @@
 
 'use client'
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Button } from "@/components/ui/button"
 import {getNotesList, saveNotes} from "./actions"
@@ -43,6 +43,13 @@ function AddNoteNote({stateChanger}) {
 function Gallery() {
   const [n, setN] = useState(1);
   const [notes, setNotes] = useState( [{noteid:0,text:"example", modified:false}]);
+  useEffect(() => {
+    async function fetchNotes() {
+      const fetchedNotes = await getNotesList();
+      setNotes(fetchedNotes); 
+    }
+    fetchNotes();
+  }, []);
   function AddNotes(text: string) {
     setNotes(notes => [...notes, {noteid:n, text:text, modified:true}]);
     setN(n => n + 1);
