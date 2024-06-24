@@ -3,7 +3,7 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Button } from "@/components/ui/button"
-import {getNotesList, saveNotes} from "./actions"
+import {deleteNote, getNotesList, saveNotes, updateNote} from "./actions"
 function Note({id, text, deleteFunc, noteEditFunc, noteChangeStatusFunc, editing}) {
   const keyboardHandler = (event) => { 
     if (event.key === 'Enter') {
@@ -12,13 +12,13 @@ function Note({id, text, deleteFunc, noteEditFunc, noteChangeStatusFunc, editing
   }
   if (editing == 0) {
     return (
-      <div className = "note" onClick={e => noteChangeStatusFunc(id)}>
+      <Button variant="default" onClick={e => noteChangeStatusFunc(id)}>
         <p> {text}</p>
-      </div>
+      </Button>
     )
   } else {
     return (
-      <div className = "note" onClick={e => noteChangeStatusFunc(id)}>
+      <Button variant="default" onClick={e => noteChangeStatusFunc(id)}>
         <input id="new_note_text"
          className="new_note_text"
           type="text" 
@@ -29,16 +29,15 @@ function Note({id, text, deleteFunc, noteEditFunc, noteChangeStatusFunc, editing
           />
           <Button variant="destructive"> OK</Button>
         <Button variant="destructive" onClick={(e)=>{e.stopPropagation();deleteFunc(id)}}>Delete </Button>
-      </div>
+        </Button>
     )
   }
 }
 function AddNoteNote({stateChanger}) {
   let text = "new note";
-  return (<div 
-    className="note"
+  return (<Button variant="outline"
     onClick={() => stateChanger(text)}> <p>add note</p>
-    </div>)
+    </Button>)
 }
 function Gallery() {
   const [n, setN] = useState(1);
@@ -52,16 +51,19 @@ function Gallery() {
   }, []);
   function AddNotes(text: string) {
     setNotes(notes => [...notes, {noteid:n, text:text, modified:true}]);
+    saveNotes(text);
     setN(n => n + 1);
+
   }
   function noteDelete(note_id) {
     setNotes(notes.filter(x => x.noteid != note_id));
+    deleteNote(note_id);
   }
   function noteChangeStatus(note_id) {
     setNotes(notes.map(x => {
       if (x.noteid == note_id) {
         x.modified = !x.modified;
-        saveNotes(x.text);
+        updateNote(note_id, x.text);
       } 
       return x;
     }
@@ -72,6 +74,7 @@ function Gallery() {
       if (x.noteid == note_id) {
         x.text = note_text;
       } 
+      updateNote(note_id, note_text);
       return x;
     }
     ))

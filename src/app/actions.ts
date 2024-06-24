@@ -16,9 +16,25 @@ export async function saveNotes(text: string) {
 export async function getNotesList() {
   const notes_list = await prisma.note.findMany();
   console.log("getNotes");
-  console.log(notes_list);
-  console.log( notes_list.map((x) => {return({noteid:x.id, text:x.text, modified:false})}));
   return(
     notes_list.map((x) => {return({noteid:x.id, text:x.text, modified:false})})
 )
+}
+export async function updateNote(id: number, text:string) {
+  const updateUser = await prisma.note.update({
+    where: {
+      id: id,
+    },
+    data: {
+      text: text,
+    },
+  })
+}
+export async function deleteNote(id:number) {
+  const deleteUser = await prisma.note.delete({
+    where: {
+      id: id,
+    },
+  })
+  
 }

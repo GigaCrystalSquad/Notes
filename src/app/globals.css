@@ -74,3 +74,6 @@
       @apply bg-background text-foreground;
     }
   }
+  .new_note_text {
+    color: green;
+  }
