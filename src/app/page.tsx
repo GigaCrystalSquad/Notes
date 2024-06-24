@@ -3,7 +3,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Button } from "@/components/ui/button"
-import {saveNotes} from "./actions"
+import {getNotesList, saveNotes} from "./actions"
 function Note({id, text, deleteFunc, noteEditFunc, noteChangeStatusFunc, editing}) {
   const keyboardHandler = (event) => { 
     if (event.key === 'Enter') {
