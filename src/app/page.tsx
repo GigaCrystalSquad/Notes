@@ -49,11 +49,10 @@ function Gallery() {
     }
     fetchNotes();
   }, []);
-  function AddNotes(text: string) {
-    setNotes(notes => [...notes, {noteid:n, text:text, modified:true}]);
-    saveNotes(text);
+  async function AddNotes(text: string) {
+    const newNoteId = await saveNotes(text);
+    setNotes(notes => [...notes, { noteid: newNoteId, text: text, modified: true }]);
     setN(n => n + 1);
-
   }
   function noteDelete(note_id) {
     setNotes(notes.filter(x => x.noteid != note_id));

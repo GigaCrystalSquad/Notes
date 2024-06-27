@@ -12,6 +12,7 @@ export async function saveNotes(text: string) {
       
    // const users = await prisma.user.findMany()
     console.log("SaveNotes");
+    return newUser.id;
 }
 export async function getNotesList() {
   const notes_list = await prisma.note.findMany();
