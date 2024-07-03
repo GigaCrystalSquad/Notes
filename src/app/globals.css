@@ -77,3 +77,26 @@
   .new_note_text {
     color: green;
   }
+  .note_container {
+    display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Adjust the gap between notes */
+  }
+  .note {
+    background-color: orange;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    max-width: calc(33% - 20px); /* Adjust width to fit three notes in a row */
+    box-sizing: border-box;
+    flex: 1 1 calc(33% - 20px); /* Allow the notes to grow and shrink as needed */
+    
+  }

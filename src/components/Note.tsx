@@ -3,6 +3,8 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Button } from "@/components/ui/button"
 import {deleteNote, getNotesList, saveNotes, updateNote} from "../app/actions"
+import { Textarea } from "@/components/ui/textarea"
+
 export default function Note({id, text, deleteFunc, noteEditFunc, noteChangeStatusFunc, editing}) {
   const keyboardHandler = (event: React.KeyboardEvent<HTMLInputElement>) => { 
     if (event.key === 'Enter') {
@@ -11,16 +13,17 @@ export default function Note({id, text, deleteFunc, noteEditFunc, noteChangeStat
   }
   if (editing == 0) {
     return (
-      <Button variant="default" onClick={e => noteChangeStatusFunc(id)}>
-        <p> {text}</p>
-      </Button>
+        <div className='note_container'>
+        <div className='note' onClick={e => noteChangeStatusFunc(id)}>
+            <p> {text}</p>
+      </div>
+      </div>
     )
   } else {
     return (
-      <Button variant="default" onClick={e => noteChangeStatusFunc(id)}>
-        <input id="new_note_text"
+    <div className='note' onClick={e => noteChangeStatusFunc(id)}>
+        <Textarea id="new_note_text"
          className="new_note_text"
-          type="text" 
           onClick = {e => e.stopPropagation()} 
           value = {text} 
           onChange={x=>noteEditFunc(id, x.target.value)}
@@ -28,7 +31,7 @@ export default function Note({id, text, deleteFunc, noteEditFunc, noteChangeStat
           />
           <Button variant="destructive"> OK</Button>
         <Button variant="destructive" onClick={(e)=>{e.stopPropagation();deleteFunc(id)}}>Delete </Button>
-        </Button>
+    </div>
     )
   }
 }
