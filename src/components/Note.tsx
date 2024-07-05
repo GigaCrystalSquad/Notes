@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button"
 import {deleteNote, getNotesList, saveNotes, updateNote} from "../app/actions"
 import { Textarea } from "@/components/ui/textarea"
 
-export default function Note({id, text, deleteFunc, noteEditFunc, noteChangeStatusFunc, editing}) {
-  const keyboardHandler = (event: React.KeyboardEvent<HTMLInputElement>) => { 
+export default function Note({id, text, deleteFunc, noteEditFunc, noteChangeStatusFunc, editing}:{id:number, text: string | null,  deleteFunc:any, noteEditFunc:any, noteChangeStatusFunc:any, editing:any}) {
+  const keyboardHandler = (event: React.KeyboardEvent<HTMLTextAreaElement>) => { 
     if (event.key === 'Enter') {
       noteChangeStatusFunc(id);
     } 
@@ -25,7 +25,7 @@ export default function Note({id, text, deleteFunc, noteEditFunc, noteChangeStat
         <Textarea id="new_note_text"
          className="new_note_text"
           onClick = {e => e.stopPropagation()} 
-          value = {text} 
+          value = {text ?? ""} 
           onChange={x=>noteEditFunc(id, x.target.value)}
           onKeyDown={x=> keyboardHandler(x)}
           />
