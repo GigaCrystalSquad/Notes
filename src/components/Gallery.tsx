@@ -44,7 +44,7 @@ export default  function Gallery() {
       if (x.noteid == note_id) {
         x.text = note_text;
       } 
-      updateNote(note_id, note_text);
+//      updateNote(note_id, note_text);
       return x;
     }
     ))
